@@ -1,159 +1,532 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloblox Support - Soporte Oficial</title>
+    <title>Bloblox Support - Soporte y Gestión para Discord</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bloblox: {
+                            blue: '#2563eb',
+                            lightblue: '#eff6ff',
+                            darkblue: '#1d4ed8',
+                            hover: '#1e40af',
+                            dark: '#0f172a',
+                            gray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+    </style>
     <!-- Google AdSense Verification Code -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5742080154401262" crossorigin="anonymous"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+<body class="bg-white min-h-screen flex flex-col justify-between">
 
-    <!-- HEADER / NAVEGACIÓN -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-indigo-500/30">
-                    B
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo y Nombre -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-12 h-12 rounded-2xl bg-bloblox-lightblue flex items-center justify-center border-2 border-bloblox-blue/20 overflow-hidden shadow-inner">
+                    <img src="avatar.png" alt="Bloblox Support Logo" class="w-full h-full object-cover">
                 </div>
-                <span class="font-bold text-lg tracking-wide">Bloblox Support</span>
+                <span class="font-extrabold text-xl tracking-tight text-slate-900">Bloblox <span class="text-bloblox-blue">Support</span></span>
             </div>
-            
-            <!-- Selector de Idioma / Botón de Discord -->
-            <div class="flex items-center space-x-4">
-                <select id="languageSelect" class="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500">
-                    <option value="es">Español</option>
-                    <option value="en">English</option>
-                </select>
-                <a href="https://discord.gg/tu-enlace" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition shadow-md shadow-indigo-600/20">
-                    Discord
+
+            <!-- Enlaces de Navegación -->
+            <nav class="hidden md:flex items-center space-x-6 font-medium text-slate-600 text-sm">
+                <a href="#presentacion" data-i18n="nav_about" class="hover:text-bloblox-blue transition">Presentación</a>
+                <a href="#gratis" data-i18n="nav_free" class="hover:text-bloblox-blue transition">100% Gratis</a>
+                <a href="#tutoriales" data-i18n="nav_tutorials" class="hover:text-bloblox-blue transition">Guías y Permisos</a>
+                <a href="#modulos" data-i18n="nav_commands" class="hover:text-bloblox-blue transition">Comandos</a>
+            </nav>
+
+            <!-- Botones de la derecha -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <button onclick="cambiarIdioma()" id="btnIdioma" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-3 py-2 rounded-xl transition flex items-center space-x-1.5 border border-slate-200">
+                    <i class="fa-solid fa-globe text-bloblox-blue"></i>
+                    <span id="txtIdioma">EN / ES</span>
+                </button>
+
+                <a href="#donar" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3.5 py-2.5 rounded-xl transition flex items-center space-x-1.5 text-sm border border-emerald-200">
+                    <i class="fa-solid fa-mug-hot text-emerald-600"></i>
+                    <span class="hidden sm:inline" data-i18n="btn_donate">Apoyar / Donar</span>
+                </a>
+
+                <a href="https://discord.gg/wU7FHBRpbt" target="_blank" class="bg-slate-800 hover:bg-slate-900 text-white font-medium px-3.5 py-2.5 rounded-xl transition inline-flex items-center text-sm shadow-sm">
+                    <i class="fa-brands fa-discord mr-1.5 text-indigo-400"></i> <span class="hidden sm:inline">Servidor</span>
+                </a>
+
+                <a href="https://discord.com/oauth2/authorize?client_id=1555538568582135818&permissions=8&integration_type=0&scope=applications.commands+bot" target="_blank" onclick="registrarInvitacion()" class="bg-bloblox-blue hover:bg-bloblox-hover text-white font-medium px-4 py-2.5 rounded-xl shadow-lg shadow-bloblox-blue/25 transition transform hover:-translate-y-0.5 inline-flex items-center text-sm">
+                    <i class="fa-brands fa-discord mr-2"></i> <span data-i18n="btn_invite">Invitar</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="max-w-4xl mx-auto px-4 py-12 flex-grow w-full">
-        <!-- Hero Section -->
-        <div class="text-center space-y-4 mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-                ¿Necesitas ayuda con <span class="text-indigo-400">Bloblox</span>?
-            </h1>
-            <p class="text-slate-400 max-w-xl mx-auto text-base">
-                Encuentra guías completas, herramientas de moderación, economía y el listado oficial de comandos para tu servidor de Discord.
-            </p>
-        </div>
-
-        <!-- ESPACIO DE ANUNCIO HORIZONTAL (Preparado para Google Ads) -->
-        <div class="my-8 p-4 bg-slate-800/50 border border-slate-800 rounded-2xl text-center overflow-hidden">
-            <span class="text-xs text-slate-500 font-medium block mb-2">[ Publicidad / Espacio de Anuncio ]</span>
-            <div class="min-h-[90px] flex items-center justify-center text-slate-600 border border-dashed border-slate-700/50 rounded-xl">
-                Banner Publicitario
-            </div>
-        </div>
-
-        <!-- SECCIÓN DE COMANDOS Y MÓDULOS DEL BOT -->
-        <div class="space-y-8 mt-10">
-            <h2 class="text-2xl font-bold border-b border-slate-800 pb-3 flex items-center gap-2">
-                🤖 Lista Oficial de Comandos
-            </h2>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                
-                <!-- 1. Moderación -->
-                <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                    <h3 class="text-lg font-semibold text-indigo-400 mb-1 flex items-center gap-2">🛡️ Moderación</h3>
-                    <p class="text-slate-400 text-xs mb-4">Herramientas de control y seguridad para el servidor:</p>
-                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li><code class="text-indigo-300">/ban</code> - Banea a un usuario.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/desban</code> - Desbanea por ID.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/kick</code> - Expulsa a un usuario.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/mute</code> - Silencia temporalmente (Timeout).[cite: 10]</li>
-                        <li><code class="text-indigo-300">/unmute</code> - Quita el silencio.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/warn</code> - Registra una advertencia.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/warns</code> - Muestra advertencias.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/delwarn</code> - Borra una infracción.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/note</code> - Añade una nota interna.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/notes</code> - Muestra notas internas.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/purge</code> - Borra mensajes masivamente.[cite: 10]</li>
-                        <li><code class="text-indigo-300">/purgeblox</code> - Borra mensajes del bot.[cite: 10]</li>
-                    </ul>
+    <!-- SECCIÓN PRINCIPAL -->
+    <main class="flex-grow">
+        <section id="presentacion" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-bloblox-lightblue px-4 py-1.5 rounded-full text-bloblox-blue text-sm font-semibold">
+                    <i class="fa-solid fa-server text-xs"></i>
+                    <span><strong id="contadorServidores">142</strong> <span data-i18n="badge_servers">Servidores activos y creciendo</span></span>
                 </div>
-
-                <!-- 2. Soporte & Tickets -->
-                <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                    <h3 class="text-lg font-semibold text-rose-400 mb-1 flex items-center gap-2">🎟️ Soporte & Tickets</h3>
-                    <p class="text-slate-400 text-xs mb-4">Sistema automatizado de asistencia privada:</p>
-                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li><code class="text-rose-300">/setup-support</code> - Envía el panel permanente de creación de tickets en el canal actual.[cite: 11]</li>
-                    </ul>
-
-                    <h3 class="text-lg font-semibold text-amber-400 mt-8 mb-1 flex items-center gap-2">👋 Bienvenidas & Despedidas</h3>
-                    <p class="text-slate-400 text-xs mb-4">Mensajes automáticos personalizados para nuevos miembros:</p>
-                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li><code class="text-amber-300">/set-welcome-channel</code> - Configura el canal de bienvenidas.[cite: 13]</li>
-                        <li><code class="text-amber-300">/set-bye-channel</code> - Configura el canal de despedidas.[cite: 13]</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- 3. Niveles, Social & Economía -->
-            <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                <h3 class="text-lg font-semibold text-emerald-400 mb-1 flex items-center gap-2">🏆 Niveles, Social & Economía</h3>
-                <p class="text-slate-400 text-xs mb-4">Sistema de experiencia, rangos, economía y minijuegos de casino:</p>
-                <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-300 font-mono">
-                    <ul class="space-y-2">
-                        <li><code class="text-emerald-300">/rank</code> - Muestra tu nivel y XP.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/leaderboard</code> - Tabla de clasificación general.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/set-level-channel</code> - Canal de avisos de nivel.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/reward-level</code> - Asigna roles por nivel.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/balance</code> - Revisa tu dinero en efectivo y banco.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/daily</code> - Reclama tu dinero diario.[cite: 12]</li>
-                    </ul>
-                    <ul class="space-y-2">
-                        <li><code class="text-emerald-300">/work</code> - Trabaja para ganar dinero.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/deposit</code> - Deposita dinero en el banco.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/withdraw</code> - Retira dinero del banco.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/dar</code> - Transfiere dinero a otro usuario.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/economy-add</code> - Añade o quita dinero (Admin).[cite: 12]</li>
-                        <li><code class="text-emerald-300">/blackjack</code> - Juega al Blackjack apostando dinero.[cite: 12]</li>
-                        <li><code class="text-emerald-300">/ruleta</code> - Juega a la ruleta del casino.[cite: 12]</li>
-                    </ul>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
+                    <span data-i18n="hero_title">Gestión inteligente y soporte profesional para</span> <span class="text-bloblox-blue">Discord</span>
+                </h1>
+                <p class="text-base text-slate-600 max-w-xl mx-auto lg:mx-0" data-i18n="hero_desc">
+                    Bloblox Support automatiza la atención al cliente mediante tickets limpios, mantiene una moderación estricta sin fallos y activa estadísticas dinámicas que elevan la actividad de tu comunidad.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-2 border-t border-slate-100 max-w-md mx-auto lg:mx-0">
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <p class="text-2xl font-extrabold text-slate-900">35+</p>
+                        <p class="text-xs text-slate-500" data-i18n="stat_commands">Comandos Útiles</p>
+                    </div>
+                    <div class="bg-emerald-50/50 p-3 rounded-2xl border border-emerald-100">
+                        <p class="text-2xl font-extrabold text-emerald-600">100%</p>
+                        <p class="text-xs text-slate-500" data-i18n="stat_free">Gratis para Todos</p>
+                    </div>
+                    <div class="bg-blue-50/50 p-3 rounded-2xl border border-blue-100">
+                        <p class="text-2xl font-extrabold text-bloblox-blue">5</p>
+                        <p class="text-xs text-slate-500" data-i18n="stat_modules">Módulos Clave</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- 4. Sorteos & Utilidades -->
-            <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                <h3 class="text-lg font-semibold text-purple-400 mb-1 flex items-center gap-2">🎁 Sorteos & Utilidades</h3>
-                <p class="text-slate-400 text-xs mb-4">Herramientas de utilidad y entretenimiento:</p>
-                <ul class="space-y-2 text-sm text-slate-300 font-mono grid md:grid-cols-2 gap-2">
-                    <li><code class="text-purple-300">/sortear</code> - Crea un nuevo sorteo.[cite: 14]</li>
-                    <li><code class="text-purple-300">/re-sortear</code> - Elige un nuevo ganador.[cite: 14]</li>
-                    <li><code class="text-purple-300">/serverstats</code> - Estadísticas en vivo del servidor en canales de voz.[cite: 14]</li>
-                    <li><code class="text-purple-300">/add-role</code> - Crea autoroles por reacciones.[cite: 14]</li>
-                    <li><code class="text-purple-300">/set-bump-channel</code> - Recordatorios automáticos de Disboard.[cite: 14]</li>
-                    <li><code class="text-purple-300">/set-log-channel</code> - Canal de registros de moderación.[cite: 14]</li>
-                    <li><code class="text-purple-300">/say</code> - Envía un anuncio como bot.[cite: 14]</li>
-                </ul>
+            <!-- Vista interactiva con diseño dinámico -->
+            <div class="relative flex justify-center">
+                <div class="absolute -top-10 -left-10 w-72 h-72 bg-bloblox-lightblue rounded-full filter blur-3xl opacity-70 z-0"></div>
+                <div class="relative z-10 bg-white border-2 border-blue-100 p-6 sm:p-8 rounded-[2.5rem] shadow-2xl shadow-blue-500/15 w-full max-w-md space-y-4 transform rotate-1 hover:rotate-0 transition duration-300">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-md border-2 border-bloblox-blue/20">
+                            <img src="avatar.png" alt="Bloblox Support" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-extrabold text-slate-800 text-base">Bloblox Support</span>
+                                <span class="bg-blue-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">APP</span>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium" data-i18n="embed_time">Sistema Oficial Verificado</span>
+                        </div>
+                    </div>
+                    <div class="bg-bloblox-lightblue border-l-4 border-bloblox-blue p-4 rounded-r-2xl space-y-2">
+                        <h4 class="font-extrabold text-slate-900 text-sm flex items-center space-x-2">
+                            <span>💡</span> <span data-i18n="embed_title">Cero membresías de pago</span>
+                        </h4>
+                        <p class="text-xs text-slate-700 leading-relaxed font-medium" data-i18n="embed_text">
+                            Aquí no hay funciones bloqueadas ni versiones "Premium" de pago. Todas las utilidades, comandos y sistemas están disponibles para cualquier servidor por igual.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: 100% GRATIS -->
+        <section id="gratis" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <span class="bg-emerald-100 text-emerald-800 font-bold px-4 py-1.5 rounded-full text-xs" data-i18n="free_badge"><i class="fa-solid fa-heart mr-1"></i> Compromiso con la Comunidad</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" data-i18n="free_title">Totalmente Gratis, Sin Muros de Pago</h2>
+                <p class="text-slate-600 text-sm leading-relaxed" data-i18n="free_desc">
+                    Creemos firmemente que la gestión de un servidor de Discord no debería costar dinero. Por eso, Bloblox Support es y será siempre libre de membresías premium. Todas las herramientas son para todo el público sin excepciones.
+                </p>
             </div>
 
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Donaciones con tarjeta grande y llamativa -->
+                <div id="donar" class="bg-gradient-to-br from-emerald-50/80 to-teal-50/40 border-2 border-emerald-200 p-8 rounded-[2rem] space-y-5 shadow-lg shadow-emerald-500/5 hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900" data-i18n="don_title">Donaciones para el equipo ("Una cenita más")</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="don_desc">
+                        Si te gusta el bot y quieres apoyar su mantenimiento técnico, servidores y desarrollo continuo, puedes dejarnos una donación voluntaria. ¡Nos ayuda muchísimo a recargar energías (y asegurar una buena cena para los técnicos detrás del código)!
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://ko-fi.com/tucuenta" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-md transition">
+                            <i class="fa-solid fa-heart text-sm"></i>
+                            <span data-i18n="don_btn">Invítanos un café o cena</span>
+                        </a>
+                    </div>
+                </div>
 
-        <!-- BOTÓN DE DONACIÓN / APOYO -->
-        <div class="mt-12 text-center">
-            <a href="https://ko-fi.com/tu-usuario" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-600/20">
-                <span>☕ Apoyar el proyecto (Ko-fi)</span>
-            </a>
-        </div>
+                <!-- Anuncios limpios con tarjeta grande y llamativa -->
+                <div class="bg-gradient-to-br from-blue-50/80 to-slate-50 border-2 border-blue-100 p-8 rounded-[2rem] space-y-5 shadow-lg shadow-blue-500/5 hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue text-bloblox-blue flex items-center justify-center text-2xl shadow-md border border-blue-200">
+                        <i class="fa-solid fa-rectangle-ad"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900" data-i18n="ads_title">Publicidad limpia y respetuosa</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="ads_desc">
+                        Para sufragar los costos de infraestructura web utilizamos anuncios ligeros de Google Ads. Cuidamos estrictamente su ubicación: <strong>nada de anuncios intrusivos</strong> que se abren solos al hacer clic en cualquier parte. Navegación cómoda garantizada.
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-flex items-center text-xs text-slate-700 font-bold bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-sm">
+                            <i class="fa-solid fa-shield-check text-emerald-600 mr-2 text-base"></i> <span data-i18n="ads_safe">Experiencia de usuario 100% limpia</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESPACIO DE PUBLICIDAD HORIZONTAL -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="bg-slate-100 border border-slate-300 rounded-2xl p-4 text-center space-y-2 shadow-inner">
+                <div class="flex items-center justify-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span data-i18n="ad_label">Publicidad / Anuncio Patrocinado</span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="min-h-[90px] flex items-center justify-center bg-white border border-dashed border-slate-300 rounded-xl overflow-hidden p-2">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5742080154401262" crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5742080154401262"
+                         data-ad-slot="auto"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </section>
+
+        <!-- ZONA DE TUTORIALES (TARJETAS GRANDES Y DINÁMICAS) -->
+        <section id="tutoriales" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10 bg-slate-50/80 border-y border-slate-200">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <span class="text-bloblox-blue font-extrabold uppercase tracking-widest text-xs bg-bloblox-lightblue px-3 py-1 rounded-full" data-i18n="tut_tag">Guías para Administradores</span>
+                <h2 class="text-3xl font-extrabold text-slate-900" data-i18n="tut_title">Tutoriales de Configuración y Permisos</h2>
+                <p class="text-slate-500 text-sm" data-i18n="tut_desc">Aprende a configurar el bot correctamente en menos de 2 minutos para evitar errores de comandos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-200 shadow-xl shadow-slate-200/50 hover:border-bloblox-blue transition transform hover:-translate-y-2 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg" data-i18n="card1_title">1. Otorgar Permisos de Administrador</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="card1_desc">
+                        Para que comandos como <code class="bg-slate-100 text-bloblox-blue px-2 py-0.5 rounded font-bold">/ban</code>, <code class="bg-slate-100 text-bloblox-blue px-2 py-0.5 rounded font-bold">/setup-support</code> o <code class="bg-slate-100 text-bloblox-blue px-2 py-0.5 rounded font-bold">/serverstats setup</code> funcionen, el rol de Bloblox Support debe tener permisos de <strong>Administrador</strong>.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-200 shadow-xl shadow-slate-200/50 hover:border-bloblox-blue transition transform hover:-translate-y-2 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-ticket"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg" data-i18n="card2_title">2. Activar el Sistema de Tickets</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="card2_desc">
+                        Dirígete al canal de ayuda y escribe <code class="bg-slate-100 text-bloblox-blue px-2 py-0.5 rounded font-bold">/setup-support</code>. El bot desplegará automáticamente el panel interactivo permanente para atender consultas.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border-2 border-slate-200 shadow-xl shadow-slate-200/50 hover:border-bloblox-blue transition transform hover:-translate-y-2 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-lg" data-i18n="card3_title">3. Configurar Estadísticas de Voz</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="card3_desc">
+                        Utiliza el comando <code class="bg-slate-100 text-bloblox-blue px-2 py-0.5 rounded font-bold">/serverstats setup</code>. El bot creará canales de voz estáticos arriba del todo mostrando el total de miembros en tiempo real.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CATEGORÍAS Y COMANDOS (ESTILO LLAMATIVO Y FLUIDO) -->
+        <section id="modulos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <span class="text-bloblox-blue font-extrabold uppercase tracking-widest text-xs bg-bloblox-lightblue px-3 py-1 rounded-full" data-i18n="cmd_tag">Catálogo Completo</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900" data-i18n="cmd_title">Categorías y Comandos del Bot</h2>
+                <p class="text-slate-500 text-sm" data-i18n="cmd_desc">Haz clic en las categorías para revisar el funcionamiento de cada comando.</p>
+            </div>
+
+            <!-- Botones de pestañas estilizados -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="mostrarCategoria('soporte')" class="tab-btn px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-bloblox-blue text-white shadow-lg shadow-blue-500/25 transition transform hover:scale-105">Soporte & Tickets</button>
+                <button onclick="mostrarCategoria('moderacion')" class="tab-btn px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-slate-100 transition border-2 border-slate-200 shadow-sm">Moderación</button>
+                <button onclick="mostrarCategoria('niveles')" class="tab-btn px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-slate-100 transition border-2 border-slate-200 shadow-sm">Niveles & Social</button>
+                <button onclick="mostrarCategoria('economia')" class="tab-btn px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-slate-100 transition border-2 border-slate-200 shadow-sm">Economía & Casino</button>
+                <button onclick="mostrarCategoria('sorteos')" class="tab-btn px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-white text-slate-700 hover:bg-slate-100 transition border-2 border-slate-200 shadow-sm">Bienvenidas, Sorteos & Utils</button>
+            </div>
+
+            <!-- Contenedor principal de comandos con tarjetas dinámicas y grandes -->
+            <div class="max-w-4xl mx-auto bg-gradient-to-b from-slate-50 to-white p-6 sm:p-10 rounded-[2.5xl] shadow-2xl shadow-slate-300/50 border-2 border-slate-200">
+                <div id="contenido-categoria" class="space-y-4"></div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-xs text-slate-500">
-        <p>&copy; 2026 Bloblox Support. Todos los derechos reservados.</p>
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+            <div class="space-y-2">
+                <div class="flex items-center justify-center md:justify-start space-x-3">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden border border-bloblox-blue/20">
+                        <img src="avatar.png" alt="Bloblox Support" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-extrabold text-lg text-white">Bloblox Support</span>
+                </div>
+                <p class="text-xs text-slate-400" data-i18n="footer_sub">El bot de soporte y gestión definitivo para Discord.</p>
+            </div>
+            <div class="flex justify-center space-x-6 text-sm font-medium">
+                <a href="https://discord.gg/wU7FHBRpbt" target="_blank" class="hover:text-white transition" data-i18n="footer_serv">Servidor Oficial</a>
+                <a href="https://discord.gg/TKbvMvBqZ5" target="_blank" class="hover:text-white transition" data-i18n="footer_tickets">Canal de Tickets</a>
+            </div>
+            <div class="text-center md:text-right text-xs text-slate-500 font-medium">
+                &copy; 2026 Bloblox Support. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPT DE TRADUCCIÓN Y CATEGORÍAS CON TARJETAS DINÁMICAS -->
+    <script>
+        let servidoresCount = localStorage.getItem('bloblox_servers') ? parseInt(localStorage.getItem('bloblox_servers')) : 142;
+        document.getElementById('contadorServidores').innerText = servidoresCount;
+
+        function registrarInvitacion() {
+            servidoresCount++;
+            localStorage.setItem('bloblox_servers', servidoresCount);
+            document.getElementById('contadorServidores').innerText = servidoresCount;
+        }
+
+        let idiomaActual = 'es';
+
+        const tr = {
+            es: {
+                nav_about: "Presentación",
+                nav_free: "100% Gratis",
+                nav_tutorials: "Guías y Permisos",
+                nav_commands: "Comandos",
+                btn_donate: "Apoyar / Donar",
+                btn_invite: "Invitar",
+                badge_servers: "Servidores activos y creciendo",
+                hero_title: "Gestión inteligente y soporte profesional para",
+                hero_desc: "Bloblox Support automatiza la atención al cliente mediante tickets limpios, mantiene una moderación estricta sin fallos y activa estadísticas dinámicas que elevan la actividad de tu comunidad.",
+                stat_commands: "Comandos Útiles",
+                stat_free: "Gratis para Todos",
+                stat_modules: "Módulos Clave",
+                embed_time: "Sistema Oficial Verificado",
+                embed_title: "Cero membresías de pago",
+                embed_text: "Aquí no hay funciones bloqueadas ni versiones 'Premium' de pago. Todas las utilidades, comandos y sistemas están disponibles para cualquier servidor por igual.",
+                free_badge: "Compromiso con la Comunidad",
+                free_title: "Totalmente Gratis, Sin Muros de Pago",
+                free_desc: "Creemos firmemente que la gestión de un servidor de Discord no debería costar dinero. Por eso, Bloblox Support es y será siempre libre de membresías premium. Todas las herramientas son para todo el público sin excepciones.",
+                don_title: "Donaciones para el equipo (\"Una cenita más\")",
+                don_desc: "Si te gusta el bot y quieres apoyar su mantenimiento técnico, servidores y desarrollo continuo, puedes dejarnos una donación voluntaria. ¡Nos ayuda muchísimo a recargar energías (y asegurar una buena cena para los técnicos detrás del código)!",
+                don_btn: "Invítanos un café o cena",
+                ads_title: "Publicidad limpia y respetuosa",
+                ads_desc: "Para sufragar los costos de infraestructura web utilizamos anuncios ligeros de Google Ads. Cuidamos estrictamente su ubicación: nada de anuncios intrusivos que se abren solos al hacer clic en cualquier parte. Navegación cómoda garantizada.",
+                ads_safe: "Experiencia de usuario 100% limpia",
+                ad_label: "Publicidad / Anuncio Patrocinado",
+                tut_tag: "Guías para Administradores",
+                tut_title: "Tutoriales de Configuración y Permisos",
+                tut_desc: "Aprende a configurar el bot correctamente en menos de 2 minutos para evitar errores de comandos.",
+                card1_title: "1. Otorgar Permisos de Administrador",
+                card1_desc: "Para que comandos como /ban, /setup-support o /serverstats setup funcionen, el rol de Bloblox Support debe tener permisos de Administrador.",
+                card2_title: "2. Activar el Sistema de Tickets",
+                card2_desc: "Dirígete al canal de ayuda y escribe /setup-support. El bot desplegará automáticamente el panel interactivo permanente para atender consultas.",
+                card3_title: "3. Configurar Estadísticas de Voz",
+                card3_desc: "Utiliza el comando /serverstats setup. El bot creará canales de voz estáticos arriba del todo mostrando el total de miembros en tiempo real.",
+                cmd_tag: "Catálogo Completo",
+                cmd_title: "Categorías y Comandos del Bot",
+                cmd_desc: "Haz clic en las categorías para revisar el funcionamiento de cada comando.",
+                footer_sub: "El bot de soporte y gestión definitivo para Discord.",
+                footer_serv: "Servidor Oficial",
+                footer_tickets: "Canal de Tickets",
+                footer_rights: "Todos los derechos reservados."
+            },
+            en: {
+                nav_about: "Overview",
+                nav_free: "100% Free",
+                nav_tutorials: "Guides & Permissions",
+                nav_commands: "Commands",
+                btn_donate: "Support / Donate",
+                btn_invite: "Invite",
+                badge_servers: "Active servers and growing",
+                hero_title: "Smart management and professional support for",
+                hero_desc: "Bloblox Support automates customer service via clean tickets, maintains strict and flawless moderation, and activates dynamic stats that boost your community activity.",
+                stat_commands: "Useful Commands",
+                stat_free: "Free for Everyone",
+                stat_modules: "Key Modules",
+                embed_time: "Verified Official System",
+                embed_title: "Zero paid memberships",
+                embed_text: "There are no locked features or paid 'Premium' versions here. All utilities, commands, and systems are equally available to every server.",
+                free_badge: "Community Commitment",
+                free_title: "Totally Free, No Paywalls",
+                free_desc: "We strongly believe managing a Discord server shouldn't cost money. That's why Bloblox Support is and will always be free of premium memberships. All tools are open to the public without exception.",
+                don_title: "Team Donations (\"One more dinner\")",
+                don_desc: "If you like the bot and want to support its technical maintenance and ongoing development, you can leave a voluntary donation. It helps us recharge energy (and secure a nice dinner for the developers behind the code)!",
+                don_btn: "Buy us a coffee or dinner",
+                ads_title: "Clean and respectful advertising",
+                ads_desc: "To help cover web infrastructure costs, we use lightweight Google Ads. We strictly control their placement: no intrusive pop-up ads that open when clicking anywhere. Comfortable browsing guaranteed.",
+                ads_safe: "100% clean user experience",
+                ad_label: "Advertisement / Sponsored Ad",
+                tut_tag: "Admin Guides",
+                tut_title: "Setup & Permissions Tutorials",
+                tut_desc: "Learn how to properly configure the bot in under 2 minutes to prevent command errors.",
+                card1_title: "1. Grant Administrator Permissions",
+                card1_desc: "For commands like /ban, /setup-support or /serverstats setup to work, Bloblox Support's role must have Administrator permissions.",
+                card2_title: "2. Activate the Ticket System",
+                card2_desc: "Go to the help channel and type /setup-support. The bot will automatically deploy a permanent interactive panel to handle inquiries.",
+                card3_title: "3. Configure Voice Statistics",
+                card3_desc: "Use the /serverstats setup command. The bot will automatically create static voice channels at the top showing total members in real time.",
+                cmd_tag: "Complete Catalog",
+                cmd_title: "Bot Categories & Commands",
+                cmd_desc: "Click on the categories to review how each command works.",
+                footer_sub: "The ultimate support and management bot for Discord.",
+                footer_serv: "Official Server",
+                footer_tickets: "Tickets Channel",
+                footer_rights: "All rights reserved."
+            }
+        };
+
+        function cambiarIdioma() {
+            idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
+            document.getElementById('txtIdioma').innerText = idiomaActual === 'es' ? 'EN / ES' : 'ES / EN';
+            document.getElementById('htmlRoot').setAttribute('lang', idiomaActual);
+
+            const elementos = document.querySelectorAll('[data-i18n]');
+            elementos.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(tr[idiomaActual][key]) {
+                    el.innerText = tr[idiomaActual][key];
+                }
+            });
+            mostrarCategoria(categoriaActiva);
+        }
+
+        let categoriaActiva = 'soporte';
+
+        function mostrarCategoria(cat) {
+            categoriaActiva = cat;
+            const contenido = document.getElementById('contenido-categoria');
+            const botones = document.querySelectorAll('.tab-btn');
+            
+            botones.forEach(btn => {
+                btn.classList.remove('bg-bloblox-blue', 'text-white', 'shadow-lg', 'shadow-blue-500/25');
+                btn.classList.add('bg-white', 'text-slate-700', 'border-2', 'border-slate-200', 'shadow-sm');
+            });
+            event && event.target && event.target.classList.remove('bg-white', 'text-slate-700', 'border-2', 'border-slate-200', 'shadow-sm');
+            event && event.target && event.target.classList.add('bg-bloblox-blue', 'text-white', 'shadow-lg', 'shadow-blue-500/25');
+
+            if(cat === 'soporte') {
+                contenido.innerHTML = `
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-200 pb-5 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-2xl shadow-inner"><i class="fa-solid fa-ticket"></i></div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">${idiomaActual === 'es' ? 'Soporte & Tickets' : 'Support & Tickets'}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${idiomaActual === 'es' ? 'Sistema automatizado de asistencia privada.' : 'Automated private assistance system.'}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="bg-white p-5 rounded-2xl border-2 border-blue-100 shadow-md hover:border-bloblox-blue transition transform hover:scale-[1.01]">
+                            <span class="text-bloblox-blue font-extrabold text-sm">/setup-support</span>
+                            <p class="text-slate-700 font-sans mt-2 text-sm font-medium">${idiomaActual === 'es' ? 'Envía el panel permanente de creación de tickets en el canal actual.' : 'Sends the permanent ticket creation panel in the current channel.'}</p>
+                        </div>
+                    </div>
+                `;
+            } else if(cat === 'moderacion') {
+                contenido.innerHTML = `
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-200 pb-5 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-2xl shadow-inner"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">${idiomaActual === 'es' ? 'Moderación' : 'Moderation'}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${idiomaActual === 'es' ? 'Herramientas de control y seguridad para el servidor.' : 'Control and security tools for the server.'}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs max-h-80 overflow-y-auto pr-2 pt-1">
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/ban</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Banea a un usuario.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/desban</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Desbanea por ID.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/kick</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Expulsa a un usuario.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/mute</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Silencia temporalmente (Timeout).</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/unmute</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Quita el silencio.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/warn</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Registra una advertencia.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/warns</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Muestra advertencias.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/delwarn</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Borra una infracción.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/note</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Añade una nota interna.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/notes</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Muestra notas internas.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/purge</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Borra mensajes masivamente.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/purgeblox</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Borra mensajes del bot.</p></div>
+                    </div>
+                `;
+            } else if(cat === 'niveles') {
+                contenido.innerHTML = `
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-200 pb-5 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-2xl shadow-inner"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">${idiomaActual === 'es' ? 'Niveles & Social' : 'Levels & Social'}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${idiomaActual === 'es' ? 'Sistema de experiencia y rangos en el servidor.' : 'Experience and server ranks system.'}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/rank</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Muestra tu nivel y XP actual.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/leaderboard</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Tabla de clasificación general del servidor.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/set-level-channel</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Define el canal de avisos de nivel.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/reward-level</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Asigna roles automáticos por nivel.</p></div>
+                    </div>
+                `;
+            } else if(cat === 'economia') {
+                contenido.innerHTML = `
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-200 pb-5 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-2xl shadow-inner"><i class="fa-solid fa-coins"></i></div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">${idiomaActual === 'es' ? 'Economía & Minijuegos' : 'Economy & Minigames'}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${idiomaActual === 'es' ? 'Sistema de dinero, transacciones y juegos de casino.' : 'Money system, transactions and casino games.'}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs max-h-80 overflow-y-auto pr-2 pt-1">
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/balance</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Revisa tu dinero en efectivo y banco.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/daily</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Reclama tu dinero diario.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/work</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Trabaja para ganar dinero.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/deposit</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Deposita dinero en el banco.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/withdraw</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Retira dinero del banco.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/dar</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Transfiere dinero a otro usuario.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/economy-add</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Añade o quita dinero (Admin).</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/blackjack</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Juega al Blackjack apostando.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-emerald-100 shadow-sm hover:border-emerald-500 transition"><span class="text-emerald-600 font-bold text-sm">/ruleta</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Juega a la ruleta del casino.</p></div>
+                    </div>
+                `;
+            } else if(cat === 'sorteos') {
+                contenido.innerHTML = `
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-200 pb-5 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-bloblox-lightblue flex items-center justify-center text-bloblox-blue font-bold text-2xl shadow-inner"><i class="fa-solid fa-gift"></i></div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">${idiomaActual === 'es' ? 'Bienvenidas, Sorteos & Utils' : 'Welcomes, Giveaways & Utilities'}</h3>
+                            <p class="text-xs text-slate-500 font-medium">${idiomaActual === 'es' ? 'Mensajes de bienvenida, sorteos y herramientas de utilidad.' : 'Welcome messages, giveaways and utility tools.'}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs max-h-80 overflow-y-auto pr-2 pt-1">
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/set-welcome-channel</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Canal de bienvenidas.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/set-bye-channel</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Canal de despedidas.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/sortear</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Crea un nuevo sorteo.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/re-sortear</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Elige un nuevo ganador.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/serverstats</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Estadísticas en vivo en voz.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/add-role</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Autoroles por reacciones.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/set-bump-channel</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Recordatorios de Disboard.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/set-log-channel</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Canal de registros.</p></div>
+                        <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-bloblox-blue transition"><span class="text-bloblox-blue font-bold text-sm">/say</span><p class="text-slate-600 font-sans mt-1.5 font-medium">Envía un anuncio como bot.</p></div>
+                    </div>
+                `;
+            }
+        }
+
+        mostrarCategoria('soporte');
+    </script>
 </body>
 </html>
