@@ -55,6 +55,7 @@
             <nav class="hidden md:flex items-center space-x-6 font-medium text-slate-600 text-sm">
                 <a href="#presentacion" data-i18n="nav_about" class="hover:text-bloblox-blue transition">Presentación</a>
                 <a href="#gratis" data-i18n="nav_free" class="hover:text-bloblox-blue transition">100% Gratis</a>
+                <a href="#roblox" data-i18n="nav_roblox" class="hover:text-bloblox-blue transition">Juego Roblox</a>
                 <a href="#tutoriales" data-i18n="nav_tutorials" class="hover:text-bloblox-blue transition">Guías y Permisos</a>
                 <a href="#modulos" data-i18n="nav_commands" class="hover:text-bloblox-blue transition">Comandos</a>
             </nav>
@@ -161,7 +162,7 @@
                         Si te gusta el bot y quieres apoyar su mantenimiento técnico, servidores y desarrollo continuo, puedes dejarnos una donación voluntaria. ¡Nos ayuda muchísimo a recargar energías (y asegurar una buena cena para los técnicos detrás del código)!
                     </p>
                     <div class="pt-2">
-                        <a href="https://ko-fi.com/tucuenta" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-md transition">
+                        <a href="https://Ko-fi.com/blobloxsupport" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-md transition">
                             <i class="fa-solid fa-heart text-sm"></i>
                             <span data-i18n="don_btn">Invítanos un café o cena</span>
                         </a>
@@ -205,6 +206,30 @@
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: EXPERIENCIA ROBLOX (BLOBLOX IA) -->
+        <section id="roblox" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-blue-500/30">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full filter blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div class="lg:col-span-2 space-y-4">
+                        <span class="bg-blue-500/30 border border-blue-400/30 text-blue-300 font-extrabold px-4 py-1.5 rounded-full text-xs inline-flex items-center">
+                            <i class="fa-solid fa-robot mr-2"></i> <span data-i18n="roblox_badge">Innovación en Roblox</span>
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" data-i18n="roblox_title">Bloblox IA: El primer chat de Inteligencia Artificial en español</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed" data-i18n="roblox_desc">
+                            Llevamos la experiencia más allá de Discord. Entra a nuestra experiencia oficial en Roblox y chatea directamente con la primera Inteligencia Artificial en español creada específicamente dentro de la plataforma. ¡Diviértete, haz preguntas y descubre una forma única de interactuar!
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center lg:items-end justify-center">
+                        <a href="https://www.roblox.com/es/games/114545133878254/Bloblox-IA" target="_blank" class="bg-bloblox-blue hover:bg-blue-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-blue-500/30 transition transform hover:-translate-y-1 inline-flex items-center space-x-3 text-sm border border-blue-400/40">
+                            <i class="fa-solid fa-gamepad text-lg"></i>
+                            <span data-i18n="roblox_btn">Jugar en Roblox</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -311,6 +336,7 @@
             es: {
                 nav_about: "Presentación",
                 nav_free: "100% Gratis",
+                nav_roblox: "Juego Roblox",
                 nav_tutorials: "Guías y Permisos",
                 nav_commands: "Comandos",
                 btn_donate: "Apoyar / Donar",
@@ -334,6 +360,10 @@
                 ads_desc: "Para sufragar los costos de infraestructura web utilizamos anuncios ligeros de Google Ads. Cuidamos estrictamente su ubicación: nada de anuncios intrusivos que se abren solos al hacer clic en cualquier parte. Navegación cómoda garantizada.",
                 ads_safe: "Experiencia de usuario 100% limpia",
                 ad_label: "Publicidad / Anuncio Patrocinado",
+                roblox_badge: "Innovación en Roblox",
+                roblox_title: "Bloblox IA: El primer chat de Inteligencia Artificial en español",
+                roblox_desc: "Llevamos la experiencia más allá de Discord. Entra a nuestra experiencia oficial en Roblox y chatea directamente con la primera Inteligencia Artificial en español creada específicamente dentro de la plataforma. ¡Diviértete, haz preguntas y descubre una forma única de interactuar!",
+                roblox_btn: "Jugar en Roblox",
                 tut_tag: "Guías para Administradores",
                 tut_title: "Tutoriales de Configuración y Permisos",
                 tut_desc: "Aprende a configurar el bot correctamente en menos de 2 minutos para evitar errores de comandos.",
@@ -354,6 +384,7 @@
             en: {
                 nav_about: "Overview",
                 nav_free: "100% Free",
+                nav_roblox: "Roblox Game",
                 nav_tutorials: "Guides & Permissions",
                 nav_commands: "Commands",
                 btn_donate: "Support / Donate",
@@ -377,6 +408,10 @@
                 ads_desc: "To help cover web infrastructure costs, we use lightweight Google Ads. We strictly control their placement: no intrusive pop-up ads that open when clicking anywhere. Comfortable browsing guaranteed.",
                 ads_safe: "100% clean user experience",
                 ad_label: "Advertisement / Sponsored Ad",
+                roblox_badge: "Roblox Innovation",
+                roblox_title: "Bloblox AI: The first Spanish Artificial Intelligence chat",
+                roblox_desc: "We take the experience beyond Discord. Join our official Roblox experience and chat directly with the first Spanish AI created specifically within the platform. Have fun, ask questions, and discover a unique way to interact!",
+                roblox_btn: "Play on Roblox",
                 tut_tag: "Admin Guides",
                 tut_title: "Setup & Permissions Tutorials",
                 tut_desc: "Learn how to properly configure the bot in under 2 minutes to prevent command errors.",
