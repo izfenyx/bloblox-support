@@ -42,33 +42,104 @@
                 ¿Necesitas ayuda con <span class="text-indigo-400">Bloblox</span>?
             </h1>
             <p class="text-slate-400 max-w-xl mx-auto text-base">
-                Encuentra guías rápidas, comandos y soporte técnico oficial para tu servidor de Discord de forma sencilla y segura.
+                Encuentra guías completas, herramientas de moderación, economía y el listado oficial de comandos para tu servidor de Discord.
             </p>
         </div>
 
         <!-- ESPACIO DE ANUNCIO HORIZONTAL (Preparado para Google Ads) -->
         <div class="my-8 p-4 bg-slate-800/50 border border-slate-800 rounded-2xl text-center overflow-hidden">
             <span class="text-xs text-slate-500 font-medium block mb-2">[ Publicidad / Espacio de Anuncio ]</span>
-            <!-- Aquí irá el bloque de anuncio adaptable de AdSense más adelante -->
             <div class="min-h-[90px] flex items-center justify-center text-slate-600 border border-dashed border-slate-700/50 rounded-xl">
                 Banner Publicitario
             </div>
         </div>
 
-        <!-- SECCIÓN DE TUTORIALES / PREGUNTAS FRECUENTES -->
-        <div class="grid md:grid-cols-2 gap-6 mt-8">
-            <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                <h3 class="text-lg font-semibold text-indigo-400 mb-2">🚀 ¿Cómo invitar el bot?</h3>
-                <p class="text-slate-400 text-sm">
-                    Usa el enlace oficial de invitación en tu servidor de Discord y otorga los permisos necesarios para empezar a gestionar la moderación y la diversión.
-                </p>
+        <!-- SECCIÓN DE COMANDOS Y MÓDULOS DEL BOT -->
+        <div class="space-y-8 mt-10">
+            <h2 class="text-2xl font-bold border-b border-slate-800 pb-3 flex items-center gap-2">
+                🤖 Lista Oficial de Comandos
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- 1. Moderación -->
+                <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
+                    <h3 class="text-lg font-semibold text-indigo-400 mb-1 flex items-center gap-2">🛡️ Moderación</h3>
+                    <p class="text-slate-400 text-xs mb-4">Herramientas de control y seguridad para el servidor:</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li><code class="text-indigo-300">/ban</code> - Banea a un usuario.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/desban</code> - Desbanea por ID.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/kick</code> - Expulsa a un usuario.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/mute</code> - Silencia temporalmente (Timeout).[cite: 10]</li>
+                        <li><code class="text-indigo-300">/unmute</code> - Quita el silencio.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/warn</code> - Registra una advertencia.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/warns</code> - Muestra advertencias.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/delwarn</code> - Borra una infracción.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/note</code> - Añade una nota interna.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/notes</code> - Muestra notas internas.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/purge</code> - Borra mensajes masivamente.[cite: 10]</li>
+                        <li><code class="text-indigo-300">/purgeblox</code> - Borra mensajes del bot.[cite: 10]</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Soporte & Tickets -->
+                <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
+                    <h3 class="text-lg font-semibold text-rose-400 mb-1 flex items-center gap-2">🎟️ Soporte & Tickets</h3>
+                    <p class="text-slate-400 text-xs mb-4">Sistema automatizado de asistencia privada:</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li><code class="text-rose-300">/setup-support</code> - Envía el panel permanente de creación de tickets en el canal actual.[cite: 11]</li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold text-amber-400 mt-8 mb-1 flex items-center gap-2">👋 Bienvenidas & Despedidas</h3>
+                    <p class="text-slate-400 text-xs mb-4">Mensajes automáticos personalizados para nuevos miembros:</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li><code class="text-amber-300">/set-welcome-channel</code> - Configura el canal de bienvenidas.[cite: 13]</li>
+                        <li><code class="text-amber-300">/set-bye-channel</code> - Configura el canal de despedidas.[cite: 13]</li>
+                    </ul>
+                </div>
+
             </div>
+
+            <!-- 3. Niveles, Social & Economía -->
             <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
-                <h3 class="text-lg font-semibold text-indigo-400 mb-2">🛠️ Comandos principales</h3>
-                <p class="text-slate-400 text-sm">
-                    Consulta la lista completa de comandos ejecutando barra diagonal en tu chat de Discord para ver todas las funciones de soporte disponibles.
-                </p>
+                <h3 class="text-lg font-semibold text-emerald-400 mb-1 flex items-center gap-2">🏆 Niveles, Social & Economía</h3>
+                <p class="text-slate-400 text-xs mb-4">Sistema de experiencia, rangos, economía y minijuegos de casino:</p>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-300 font-mono">
+                    <ul class="space-y-2">
+                        <li><code class="text-emerald-300">/rank</code> - Muestra tu nivel y XP.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/leaderboard</code> - Tabla de clasificación general.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/set-level-channel</code> - Canal de avisos de nivel.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/reward-level</code> - Asigna roles por nivel.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/balance</code> - Revisa tu dinero en efectivo y banco.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/daily</code> - Reclama tu dinero diario.[cite: 12]</li>
+                    </ul>
+                    <ul class="space-y-2">
+                        <li><code class="text-emerald-300">/work</code> - Trabaja para ganar dinero.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/deposit</code> - Deposita dinero en el banco.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/withdraw</code> - Retira dinero del banco.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/dar</code> - Transfiere dinero a otro usuario.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/economy-add</code> - Añade o quita dinero (Admin).[cite: 12]</li>
+                        <li><code class="text-emerald-300">/blackjack</code> - Juega al Blackjack apostando dinero.[cite: 12]</li>
+                        <li><code class="text-emerald-300">/ruleta</code> - Juega a la ruleta del casino.[cite: 12]</li>
+                    </ul>
+                </div>
             </div>
+
+            <!-- 4. Sorteos & Utilidades -->
+            <div class="bg-slate-800/60 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
+                <h3 class="text-lg font-semibold text-purple-400 mb-1 flex items-center gap-2">🎁 Sorteos & Utilidades</h3>
+                <p class="text-slate-400 text-xs mb-4">Herramientas de utilidad y entretenimiento:</p>
+                <ul class="space-y-2 text-sm text-slate-300 font-mono grid md:grid-cols-2 gap-2">
+                    <li><code class="text-purple-300">/sortear</code> - Crea un nuevo sorteo.[cite: 14]</li>
+                    <li><code class="text-purple-300">/re-sortear</code> - Elige un nuevo ganador.[cite: 14]</li>
+                    <li><code class="text-purple-300">/serverstats</code> - Estadísticas en vivo del servidor en canales de voz.[cite: 14]</li>
+                    <li><code class="text-purple-300">/add-role</code> - Crea autoroles por reacciones.[cite: 14]</li>
+                    <li><code class="text-purple-300">/set-bump-channel</code> - Recordatorios automáticos de Disboard.[cite: 14]</li>
+                    <li><code class="text-purple-300">/set-log-channel</code> - Canal de registros de moderación.[cite: 14]</li>
+                    <li><code class="text-purple-300">/say</code> - Envía un anuncio como bot.[cite: 14]</li>
+                </ul>
+            </div>
+
         </div>
 
         <!-- BOTÓN DE DONACIÓN / APOYO -->
