@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación - Bloblox Support</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="avatar.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bloblox: {
+                            blue: '#2563eb',
+                            lightblue: '#eff6ff',
+                            hover: '#1e40af',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-bloblox-blue selection:text-white">
+
+    <!-- ENCABEZADO -->
+    <header class="w-full py-6 px-8 border-b border-slate-800 bg-slate-900/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-bloblox-lightblue flex items-center justify-center border border-bloblox-blue/20 overflow-hidden">
+                    <img src="avatar.png" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="font-extrabold text-lg text-white">Bloblox <span class="text-bloblox-blue">Support</span></span>
+            </a>
+            <a href="index.html" class="text-xs font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Volver al inicio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow flex items-center justify-center px-4 py-16">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center shadow-2xl space-y-6">
+            <div class="w-16 h-16 bg-bloblox-lightblue/10 text-bloblox-blue rounded-2xl flex items-center justify-center mx-auto text-2xl border border-bloblox-blue/20">
+                <i class="fa-solid fa-shield-check"></i>
+            </div>
+            
+            <div class="space-y-2">
+                <h1 class="text-2xl font-extrabold text-white tracking-tight">Verificación de Cuenta</h1>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Esta sección está destinada a la vinculación y verificación de identidad para los servicios avanzados de Bloblox Support.
+                </p>
+            </div>
+
+            <div class="pt-2">
+                <a href="https://discord.com/oauth2/authorize?client_id=TU_CLIENT_ID" target="_blank" class="w-full bg-bloblox-blue hover:bg-bloblox-hover text-white font-bold text-sm py-3.5 px-6 rounded-2xl shadow-lg shadow-bloblox-blue/25 transition flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Verificar con Discord</span>
+                </a>
+            </div>
+
+            <p class="text-[11px] text-slate-500">
+                Si llegaste aquí por error, puedes regresar al <a href="index.html" class="text-bloblox-blue hover:underline">sitio principal</a>.
+            </p>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA BÁSICO -->
+    <footer class="py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+        &copy; 2026 Bloblox Support. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
