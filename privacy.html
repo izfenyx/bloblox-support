@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - Bloblox Support</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="avatar.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bloblox: {
+                            blue: '#2563eb',
+                            lightblue: '#eff6ff',
+                            darkblue: '#1d4ed8',
+                            hover: '#1e40af',
+                            dark: '#0f172a',
+                            gray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col justify-between">
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo y Nombre -->
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-bloblox-lightblue flex items-center justify-center border-2 border-bloblox-blue/20 overflow-hidden shadow-inner">
+                    <img src="avatar.png" alt="Bloblox Support Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="font-extrabold text-xl tracking-tight text-slate-900">Bloblox <span class="text-bloblox-blue">Support</span></span>
+            </a>
+
+            <!-- Enlace de regreso -->
+            <div>
+                <a href="index.html" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center space-x-1.5 border border-slate-200">
+                    <i class="fa-solid fa-arrow-left text-bloblox-blue"></i>
+                    <span>Volver al inicio</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+        <div class="space-y-3 border-b border-slate-200 pb-6">
+            <span class="bg-bloblox-lightblue text-bloblox-blue font-bold px-4 py-1.5 rounded-full text-xs inline-flex items-center">
+                <i class="fa-solid fa-shield-halved mr-1.5"></i> Privacidad y Datos
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Política de Privacidad</h1>
+            <p class="text-xs text-slate-400 font-medium">Última actualización: 3 de octubre de 2026</p>
+        </div>
+
+        <div class="space-y-6 text-slate-600 text-sm leading-relaxed font-medium">
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">1. Información que Recopilamos</h2>
+                <p>Para ofrecer las funciones de moderación, niveles, economía y tickets, Bloblox Support recopila estrictamente los datos necesarios de Discord, tales como:</p>
+                <ul class="list-disc pl-5 space-y-1.5 pt-2">
+                    <li>IDs de usuario y de servidor (para guardar configuraciones y balances).</li>
+                    <li>Registros de moderación (advertencias, notas internas y reportes de tickets).</li>
+                    <li>Interacciones con comandos y configuraciones establecidas por los administradores.</li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">2. Uso de la Información</h2>
+                <p>La información recopilada se utiliza exclusivamente para operar, mantener y ejecutar las características del bot dentro de tu servidor. <strong>No vendemos, comercializamos ni transferimos</strong> datos personales de los usuarios a terceros bajo ninguna circunstancia.</p>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">3. Seguridad y Retención de Datos</h2>
+                <p>Implementamos medidas de seguridad lógicas para proteger los datos almacenados contra accesos no autorizados. Los datos de configuración de tu servidor se conservan únicamente mientras el bot forme parte del mismo.</p>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
+                <h2 class="text-lg font-extrabold text-slate-900">4. Eliminación de Datos</h2>
+                <p>Si deseas eliminar todos los datos asociados a tu servidor o usuario, puedes expulsar el bot o ponerte en contacto con nuestro equipo de soporte en el servidor oficial para solicitar el borrado manual de los registros.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 font-medium">
+            &copy; 2026 Bloblox Support. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
